@@ -1,14 +1,15 @@
 package main
 
-import "errors"
+import (
+	"encoding/json"
+	"net/http"
+)
 
-func parse(req Request) (ParsedData, error) {
-	if req.DriverID == "" || req.VehicleID == "" || req.LocationID == "" {
-		return ParsedData{}, errors.New("driver, vehicle and location are all required")
+func decodeJSON[T any](w http.ResponseWriter, r *http.Request) (T, bool) {
+	var v T
+	if err := json.NewDecoder(r.Body).Decode(&v); err != nil {
+		http.Error(w, "invalid JSON body: "+err.Error(), http.StatusBadRequest)
+		return v, false
 	}
-	return ParsedData{
-		driverID:   req.DriverID,
-		vehicleID:  req.VehicleID,
-		locationID: req.LocationID,
-	}, nil
+	return v, true
 }

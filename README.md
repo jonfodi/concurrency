@@ -7,3 +7,8 @@
 - during these tasks, your core is free to perform other tasks 
 - concurrency is the term for tasks that can run without your CPU core and can therefore be fired "in parallel" to maximize the usage of your core (speed up your program)
 - parallelism would require another core to run tasks on. it cannot be achieved with only 1 core 
+
+## real world application - web server 
+- a web server may need to handle multiple requests in very short succession 
+    - 2 users fetch their profile at the same time 
+- 

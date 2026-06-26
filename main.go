@@ -13,7 +13,7 @@ func main() {
 	http.HandleFunc("GET /score", scoreHandler)
 	// rest of endpoints registered here
 	http.HandleFunc("/health", healthCheckHandler)
-	http.HandleFunc("POST /reportAccident", reportAccidentHandler)
+	// http.HandleFunc("POST /reportAccident", reportAccidentHandler)
 
 	addr := ":8080"
 	log.Printf("listening on %s", addr)

@@ -2,19 +2,14 @@ package main
 
 // Request is the raw input off the wire — it mirrors the JSON the client sends,
 // which is why it carries `json` tags. Everything here is untrusted.
-type Request struct {
+type ScoreRequest struct {
 	DriverID   string `json:"driver"`
 	VehicleID  string `json:"vehicle"`
 	LocationID string `json:"location"`
 }
 
-// ParsedData is the validated, internal form the rest of the code works with.
-// It's a distinct type from Request on purpose: Request is "whatever the client
-// sent", ParsedData is "input we've checked and trust".
-type ParsedData struct {
-	driverID   string
-	vehicleID  string
-	locationID string
+type AccidentRequest struct {
+	DriverID string `json:"driver"`
 }
 
 type History struct {
@@ -35,7 +30,7 @@ type Location struct {
 }
 
 // Response is what we hand back to the caller.
-type Response struct {
+type ScoreResponse struct {
 	Score   float64 `json:"score"`
 	Details string  `json:"details"`
 }
